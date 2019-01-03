@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistencia.Contexts
 {
-    public class UserContext: DbContext
+    public class UsuarioContext: DbContext
     {
         public DbSet<Usuario> Usuarios { get; set; }
     }

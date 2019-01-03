@@ -11,8 +11,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Entidades\Entidades.csproj" />
-  </ItemGroup>
-
 </Project>

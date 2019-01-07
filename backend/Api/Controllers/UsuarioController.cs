@@ -23,14 +23,14 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<List<Usuario>> Get()
         {
-            return await this.crudService.Buscar();
+            return await this.crudService.BuscarAsync();
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public async Task<Usuario> Get(long id)
         {
-            return await this.crudService.Buscar(id);
+            return await this.crudService.BuscarAsync(id);
         }
 
         // POST api/<controller>
@@ -40,9 +40,9 @@ namespace Api.Controllers
             this.crudService.Salvar(usuario);
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Usuario usuario)
+        // PUT api/<controller>
+        [HttpPut]
+        public void Put([FromBody]Usuario usuario)
         {
             this.crudService.Atualizar(usuario);
         }

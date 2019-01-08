@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Entidades\Entidades.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Seeds\" />
+  </ItemGroup>
+
 </Project>

@@ -15,7 +15,6 @@ namespace Persistencia.Services
         public CrudService()
         {
             dbService = new DataBaseContext();
-            this.dbService.Set<T>();
         }
 
         public void Atualizar(T entidade)

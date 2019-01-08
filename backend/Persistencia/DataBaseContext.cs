@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Persistencia.Configuration;
+using Persistencia.EntityConfiguration;
 
-namespace Persistencia.EF
+namespace Persistencia
 {
     public partial class DataBaseContext : DbContext
     {

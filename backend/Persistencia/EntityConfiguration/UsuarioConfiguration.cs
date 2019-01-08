@@ -1,7 +1,8 @@
 ﻿using Entidades.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-namespace Persistencia.Configuration
+
+namespace Persistencia.EntityConfiguration
 {
     public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Entidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Persistencia.Interfaces;
-using Persistencia.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +13,9 @@ namespace Api.Controllers
     {
         private ICrudService<Usuario> crudService;
 
-        public UsuarioController()
+        public UsuarioController(ICrudService<Usuario> userService)
         {
-            this.crudService = new UserService();
+            this.crudService = userService;
         }
 
         // GET: api/<controller>

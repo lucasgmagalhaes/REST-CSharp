@@ -9,7 +9,8 @@ namespace Persistencia
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9TG6S3I;Database=dbApi;User ID=sa;Password=senha;");
+                optionsBuilder.UseSqlServer("Server=LGSM;Database=dbApi;User ID=sa;Password=senha;")
+                    .EnableDetailedErrors();
             }
         }
 

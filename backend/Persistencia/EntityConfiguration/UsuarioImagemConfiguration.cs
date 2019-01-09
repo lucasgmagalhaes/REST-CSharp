@@ -10,6 +10,10 @@ namespace Persistencia.EntityConfiguration
         {
             entity.ToTable("Usuario_Imagem");
 
+            entity.Property(p => p.Id)
+                .HasColumnName("Usuario_Imagem_Id")
+                .ValueGeneratedOnAdd();
+
             entity.Property(e => e.Imagem)
                   .IsRequired()
                   .HasMaxLength(200);

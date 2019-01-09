@@ -9,8 +9,8 @@ namespace Entidades.Models
         public string Sobrenome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        public long UsuarioImagem { get; set; }
+        public long? UsuarioImagemId { get; set; }
 
-        public virtual UsuarioImagem IdNavigation { get; set; }
+        public virtual UsuarioImagem UsuarioImagem { get; set; }
     }
 }

@@ -100,7 +100,7 @@ namespace Persistencia.Services
 
         public async Task<T> SalvarAsync(T entidade)
         {
-            this.dbService.Add(entidade);
+            await this.dbService.AddAsync(entidade);
             await this.dbService.SaveChangesAsync();
             return entidade;
         }

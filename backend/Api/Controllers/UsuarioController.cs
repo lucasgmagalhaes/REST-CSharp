@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Entidades.Models;
 using Microsoft.AspNetCore.Mvc;
 using Persistencia.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    public class UsuarioController : Controller
+    public class UsuarioController : ControllerBase
     {
         private ICrudService<Usuario> crudService;
 
@@ -34,23 +33,40 @@ namespace Api.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Usuario usuario)
+        public IActionResult Post([FromBody]Usuario usuario)
         {
-            this.crudService.Salvar(usuario);
+            try
+            {
+                this.crudService.Inserir(usuario);
+                return Ok("Criado com sucesso");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT api/<controller>
         [HttpPut]
-        public void Put([FromBody]Usuario usuario)
+        public async Task<IActionResult> Put([FromBody]Usuario usuario)
         {
-            this.crudService.Atualizar(usuario);
+            try
+            {
+                await this.crudService.AtualizarAsync(usuario);
+                return Ok();
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(long id)
+        public async Task<IActionResult> Delete(long id)
         {
-            this.crudService.Deletar(id);
+            await this.crudService.DeletarAsync(id);
+            return Ok();
         }
     }
 }

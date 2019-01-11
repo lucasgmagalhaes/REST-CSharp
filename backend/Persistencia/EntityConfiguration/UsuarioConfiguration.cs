@@ -15,7 +15,6 @@ namespace Persistencia.EntityConfiguration
                 .HasColumnName("UsuarioId")
                 .ValueGeneratedOnAdd();
 
-            
             entity.Property(e => e.Email)
                 .IsRequired()
                 .HasMaxLength(30)

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Persistencia.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,17 +55,41 @@ namespace Persistencia.Services
             this.dbService.SaveChanges();
         }
 
-        public T Salvar(T entidade)
+        public T Inserir(T entidade)
         {
-            this.dbService.Add(entidade);
-            this.dbService.SaveChanges();
-            return entidade;
+            try
+            {
+                bool exists = this.dbService.Set<T>().Any(ent => ent.Id == entidade.Id);
+
+                if (!exists)
+                {
+                    this.dbService.Add(entidade);
+                    this.dbService.SaveChanges();
+                    return entidade;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Não é possível criar uma entidade já existente");
+            }
         }
 
         public async Task AtualizarAsync(T entidade)
         {
-            this.dbService.Update(entidade);
-            await this.dbService.SaveChangesAsync();
+            if (this.dbService.Set<T>().Any(ent => ent.Id == entidade.Id))
+            {
+                this.dbService.Update(entidade);
+                await this.dbService.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Entidade não existe no banco de dados para ser atualizada");
+            }
+
         }
 
         public async Task AtualizarAsync(List<T> entidades)
@@ -98,11 +123,27 @@ namespace Persistencia.Services
             await this.dbService.SaveChangesAsync();
         }
 
-        public async Task<T> SalvarAsync(T entidade)
+        public async Task<T> InserirAsync(T entidade)
         {
-            await this.dbService.AddAsync(entidade);
-            await this.dbService.SaveChangesAsync();
-            return entidade;
+            try
+            {
+                bool exists = this.dbService.Set<T>().Any(ent => ent.Id == entidade.Id);
+
+                if (!exists)
+                {
+                    await this.dbService.AddAsync(entidade);
+                    await this.dbService.SaveChangesAsync();
+                    return entidade;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Não é possível criar uma entidade já existente");
+            }
         }
     }
 }

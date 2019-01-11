@@ -1,6 +1,8 @@
 interface User {
-    id?: number;
-    userName: string;
+    id: number;
+    nome: string;
+    sobrenome: string;
     email: string;
-    userPassword: string;
+    senha: string;
+    usuarioImagemId: number;
 }

@@ -18,7 +18,7 @@ namespace Persistencia.Interfaces
         void Deletar(long id);
         Task DeletarAsync(T entidade);
         Task DeletarAsync(long id);
-        T Salvar(T entidade);
-        Task<T> SalvarAsync(T entidade);
+        T Inserir(T entidade);
+        Task<T> InserirAsync(T entidade);
     }
 }

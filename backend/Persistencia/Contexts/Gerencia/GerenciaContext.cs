@@ -17,7 +17,8 @@ namespace Persistencia.Contexts.Gerencia
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=lgsm;Database=gerencia;User Id=sa;Password=senha");
+                optionsBuilder.UseSqlServer("Server=lgsm;Database=gerencia;User Id=sa;Password=senha",
+                b => b.MigrationsAssembly("Migrations")).EnableDetailedErrors();
             }
         }
 

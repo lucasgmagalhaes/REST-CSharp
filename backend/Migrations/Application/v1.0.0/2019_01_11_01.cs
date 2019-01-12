@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Persistencia;
+using Persistencia.Contexts.Application;
 
 namespace Migrations
 {
@@ -11,7 +11,6 @@ namespace Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn("Teste", "Usuario");
-            migrationBuilder.AddColumn<string>(name: "Teste", table: "Usuario", nullable: true, maxLength: 30, fixedLength: true, type: "varchar");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,6 +1,7 @@
 ﻿using Entidades.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Persistencia.Contexts.Application;
 using Persistencia.Interfaces;
 using System;
 using System.Collections.Generic;

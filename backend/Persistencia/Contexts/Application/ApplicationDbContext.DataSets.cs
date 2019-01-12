@@ -1,7 +1,7 @@
 ﻿using Entidades.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistencia
+namespace Persistencia.Contexts.Application
 {
     public partial class ApplicationDbContext
     {

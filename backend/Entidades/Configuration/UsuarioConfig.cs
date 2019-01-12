@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistencia.EntityConfiguration
 {
-    public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+    public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
     {
         public void Configure(EntityTypeBuilder<Usuario> entity)
         {

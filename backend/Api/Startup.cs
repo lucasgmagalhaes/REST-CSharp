@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Persistencia;
-using Persistencia.Configuration;
+using Persistencia.Contexts.Application;
 using Persistencia.Interfaces;
 using Persistencia.Services;
 using System;

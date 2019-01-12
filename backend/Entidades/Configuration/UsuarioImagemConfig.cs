@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistencia.EntityConfiguration
 {
-    public class UsuarioImagemConfiguration : IEntityTypeConfiguration<UsuarioImagem>
+    public class UsuarioImagemConfig : IEntityTypeConfiguration<UsuarioImagem>
     {
         public void Configure(EntityTypeBuilder<UsuarioImagem> entity)
         {

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj" />
+    <ProjectReference Include="..\Migrations\Migrations.csproj" />
     <ProjectReference Include="..\Persistencia\Persistencia.csproj" />
   </ItemGroup>
 

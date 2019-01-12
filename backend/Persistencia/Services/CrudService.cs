@@ -11,11 +11,11 @@ namespace Persistencia.Services
 {
     public class CrudService<T> : ICrudService<T> where T : class, IEntity, new()
     {
-        private readonly DataBaseContext dbService;
+        private readonly ApplicationDbContext dbService;
 
-        public CrudService()
+        public CrudService(ApplicationDbContext dbService)
         {
-            dbService = new DataBaseContext();
+            this.dbService = dbService;
         }
 
         public void Atualizar(T entidade)

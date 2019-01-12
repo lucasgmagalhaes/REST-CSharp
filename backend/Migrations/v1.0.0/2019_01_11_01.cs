@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Persistencia;
 
-namespace Persistencia.Migrations
+namespace Migrations
 {
-    [Migration("20190107231600")]
-    [DbContext(typeof(DataBaseContext))]
-    public class test : Migration
+    [Migration("2019011101")]
+    [DbContext(typeof(ApplicationDbContext))]
+    public class Conversor_2019011101 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

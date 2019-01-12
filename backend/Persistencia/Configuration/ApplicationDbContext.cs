@@ -3,15 +3,11 @@ using Persistencia.EntityConfiguration;
 
 namespace Persistencia
 {
-    public partial class DataBaseContext : DbContext
+    public partial class ApplicationDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=LGSM;Database=dbApi;User ID=sa;Password=senha;")
-                    .EnableDetailedErrors();
-            }
+            optionsBuilder.UseSqlServer(ConnectionString.GetConnection()).EnableDetailedErrors();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

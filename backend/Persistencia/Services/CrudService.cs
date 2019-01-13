@@ -1,6 +1,7 @@
 ﻿using Entidades.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Persistencia.Contexts.Application;
 using Persistencia.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace Persistencia.Services
 {
     public class CrudService<T> : ICrudService<T> where T : class, IEntity, new()
     {
-        private readonly DataBaseContext dbService;
+        private readonly DbContext dbService;
 
-        public CrudService()
+        public CrudService(DbContext dbService)
         {
-            dbService = new DataBaseContext();
+            this.dbService = dbService;
         }
 
         public void Atualizar(T entidade)
@@ -144,6 +145,11 @@ namespace Persistencia.Services
             {
                 throw new Exception("Não é possível criar uma entidade já existente");
             }
+        }
+
+        public DbSet<T> Entity()
+        {
+            return this.dbService.Set<T>();
         }
     }
 }

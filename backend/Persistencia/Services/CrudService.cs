@@ -12,9 +12,9 @@ namespace Persistencia.Services
 {
     public class CrudService<T> : ICrudService<T> where T : class, IEntity, new()
     {
-        private readonly ApplicationDbContext dbService;
+        private readonly DbContext dbService;
 
-        public CrudService(ApplicationDbContext dbService)
+        public CrudService(DbContext dbService)
         {
             this.dbService = dbService;
         }
@@ -145,6 +145,11 @@ namespace Persistencia.Services
             {
                 throw new Exception("Não é possível criar uma entidade já existente");
             }
+        }
+
+        public DbSet<T> Entity()
+        {
+            return this.dbService.Set<T>();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Persistencia.Contexts.Gerencia
 
             modelBuilder.ApplyConfiguration(new ClienteConfig());
             modelBuilder.ApplyConfiguration(new EmpresaConfig());
-            modelBuilder.ApplyConfiguration(new UsuarioEmpresaConfig());
+            modelBuilder.ApplyConfiguration(new UsuarioConfig());
         }
     }
 }

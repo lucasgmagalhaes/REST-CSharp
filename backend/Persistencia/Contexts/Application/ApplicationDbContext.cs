@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Persistencia.EntityConfiguration;
 
 namespace Persistencia.Contexts.Application
 {
@@ -16,8 +15,8 @@ namespace Persistencia.Contexts.Application
         {
             modelBuilder.HasAnnotation("ProductVersion", "1.0.0");
 
-            modelBuilder.ApplyConfiguration(new UsuarioConfig());
-            modelBuilder.ApplyConfiguration(new UsuarioImagemConfig());
+            //modelBuilder.ApplyConfiguration(new UsuarioConfig());
+            //modelBuilder.ApplyConfiguration(new UsuarioImagemConfig());
         }
     }
 }

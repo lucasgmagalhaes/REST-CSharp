@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Entidades.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Persistencia.Interfaces;
 
 namespace Api.Controllers
 {
+    [ApiController]
+    [Authorize("Bearer")]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
         private ICrudService<Usuario> crudService;
 
-        public UsuarioController(ICrudService<Usuario> userService)
-        {
-            this.crudService = userService;
-        }
-
         // GET: api/<controller>
         [HttpGet]
-        public async Task<List<Usuario>> Get()
+        public string Get()
         {
-            return await this.crudService.BuscarAsync();
+            return "BATATAAAAAAAAA";
         }
 
         // GET api/<controller>/5

@@ -7,6 +7,6 @@ namespace Persistencia.Contexts.Gerencia
     {
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
-        public virtual DbSet<UsuarioEmpresa> UsuarioEmpresa { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

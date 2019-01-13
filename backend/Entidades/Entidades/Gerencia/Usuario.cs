@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Entidades.Models
 {
-    public partial class UsuarioEmpresa : IEntity
+    public partial class Usuario : IEntity
     {
         public long Id { get; set; }
         public string Nome { get; set; }

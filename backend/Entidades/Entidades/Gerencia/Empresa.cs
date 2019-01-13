@@ -8,7 +8,7 @@ namespace Entidades.Models
     {
         public Empresa()
         {
-            UsuarioEmpresa = new HashSet<UsuarioEmpresa>();
+            UsuarioEmpresa = new HashSet<Usuario>();
         }
 
         public long Id { get; set; }
@@ -16,6 +16,6 @@ namespace Entidades.Models
         public long ClienteId { get; set; }
 
         public virtual Cliente Cliente { get; set; }
-        public virtual ICollection<UsuarioEmpresa> UsuarioEmpresa { get; set; }
+        public virtual ICollection<Usuario> UsuarioEmpresa { get; set; }
     }
 }

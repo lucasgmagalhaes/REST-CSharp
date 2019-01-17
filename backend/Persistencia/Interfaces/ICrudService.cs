@@ -1,4 +1,5 @@
 ﻿using Entidades.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,5 +21,6 @@ namespace Persistencia.Interfaces
         Task DeletarAsync(long id);
         T Inserir(T entidade);
         Task<T> InserirAsync(T entidade);
+        DbSet<T> Entity();
     }
 }

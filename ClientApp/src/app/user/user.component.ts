@@ -41,7 +41,6 @@ export class UserComponent implements OnInit {
   editar(usuario: User) {
 
     (<HTMLInputElement>document.getElementById('inputNome')).value = usuario.nome;
-    (<HTMLInputElement>document.getElementById('inputSobrenome')).value = usuario.sobrenome;
     (<HTMLInputElement>document.getElementById('inputSenha')).value = usuario.senha;
     (<HTMLInputElement>document.getElementById('inputEmail')).value = usuario.email;
 

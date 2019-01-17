@@ -1,4 +1,4 @@
-﻿using Entidades.Models;
+﻿using Entidades.Entidades.Gerencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,11 +13,9 @@ namespace Entidades.Configuration.Gerencia
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.Email)
-                .IsRequired()
-                .HasMaxLength(30)
-                .IsUnicode(false);
-
-            entity.Property(e => e.EmpresaId).HasColumnName("Empresa_Id");
+                                .IsRequired()
+                                .HasMaxLength(30)
+                                .IsUnicode(false);
 
             entity.Property(e => e.Nome)
                 .IsRequired()
@@ -28,11 +26,6 @@ namespace Entidades.Configuration.Gerencia
                 .IsRequired()
                 .HasMaxLength(30)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.Empresa)
-                .WithMany(p => p.UsuarioEmpresa)
-                .HasForeignKey(d => d.EmpresaId)
-                .HasConstraintName("FK__Usuario_E__Empre__46E78A0C");
         }
     }
 }

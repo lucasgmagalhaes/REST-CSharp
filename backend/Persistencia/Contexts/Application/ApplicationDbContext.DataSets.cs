@@ -1,5 +1,4 @@
-﻿using Entidades.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Persistencia.Contexts.Application
 {

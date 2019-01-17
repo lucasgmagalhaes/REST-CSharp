@@ -1,4 +1,4 @@
-﻿using Entidades.Models;
+﻿using Entidades.Entidades.Gerencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,9 +13,9 @@ namespace Entidades.Configuration.Gerencia
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.Nome)
-                .IsRequired()
-                .HasMaxLength(100)
-                .IsUnicode(false);
+                              .IsRequired()
+                              .HasMaxLength(100)
+                              .IsUnicode(false);
         }
     }
 }

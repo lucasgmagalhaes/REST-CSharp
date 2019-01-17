@@ -1,6 +1,10 @@
 ﻿using Entidades.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Persistencia.Interfaces
@@ -13,6 +17,7 @@ namespace Persistencia.Interfaces
         Task AtualizarAsync(List<T> entidades);
         List<T> Buscar();
         T Buscar(long id);
+        IQueryable<T> Buscar(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
         Task<List<T>> BuscarAsync();
         Task<T> BuscarAsync(long id);
         void Deletar(T entidade);

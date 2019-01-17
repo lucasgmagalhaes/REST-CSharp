@@ -4,4 +4,5 @@ export interface Authentication {
     expiration: Date;
     accessToken: string;
     message: string;
+    idUsuario: number;
 }

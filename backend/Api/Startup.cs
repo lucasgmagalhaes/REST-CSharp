@@ -42,6 +42,8 @@ namespace Api
             
             services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
             services.AddScoped(typeof(IAutenticacaoService), typeof(AutenticacaoService));
+            services.AddScoped(typeof(IUsuarioService), typeof(UsuarioService));
+            services.AddScoped(typeof(IUsuarioEmpresaService), typeof(UsuarioEmpresaService));
 
             services.AddDbContext<GerenciaContext>();
             services.AddTransient<ApplicationDbContext>(provider => ResolveDbContext());

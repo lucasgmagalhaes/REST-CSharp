@@ -1,4 +1,4 @@
-﻿using Entidades.Models;
+﻿using Entidades.Entidades.Gerencia;
 
 namespace Persistencia.Interfaces
 {

@@ -1,11 +1,13 @@
 ﻿using Entidades.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Query;
 using Persistencia.Contexts.Application;
 using Persistencia.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Persistencia.Services
@@ -34,6 +36,17 @@ namespace Persistencia.Services
         public List<T> Buscar()
         {
             return this.dbService.Set<T>().ToList();
+        }
+
+        public IQueryable<T> Buscar(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, 
+            IIncludableQueryable<T, object>> include = null)
+        {
+            IQueryable<T> result = this.dbService.Set<T>().Where(predicate);
+
+            if (include != null)
+                result = include(result);
+
+            return result.AsQueryable();
         }
 
         public T Buscar(long id)

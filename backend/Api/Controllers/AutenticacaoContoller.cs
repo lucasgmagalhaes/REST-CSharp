@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using Api.Token;
-using Entidades.Models;
+using Entidades.Entidades.Gerencia;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -32,9 +31,10 @@ namespace Api.Controllers
             [FromServices]TokenConfigurations tokenConfigurations)
         {
             bool credenciaisValidas = false;
+            Usuario usuarioBase = null;
             if (usuario != null && !String.IsNullOrWhiteSpace(usuario.Email))
             {
-                var usuarioBase = autenticacaoService.Entity().Where(user => user.Email == usuario.Email).Single();
+                usuarioBase = autenticacaoService.Entity().Where(user => user.Email == usuario.Email).Single();
                 credenciaisValidas = (usuarioBase != null &&
                     usuario.Email == usuarioBase.Email &&
                     usuario.Senha == usuarioBase.Senha);
@@ -72,7 +72,8 @@ namespace Api.Controllers
                     created = dataCriacao.ToString("yyyy-MM-dd HH:mm:ss"),
                     expiration = dataExpiracao.ToString("yyyy-MM-dd HH:mm:ss"),
                     accessToken = token,
-                    message = "OK"
+                    message = "OK",
+                    IdUsuario = usuarioBase.Id
                 };
             }
             else

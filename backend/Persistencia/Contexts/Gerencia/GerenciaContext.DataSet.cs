@@ -1,4 +1,4 @@
-﻿using Entidades.Models;
+﻿using Entidades.Entidades.Gerencia;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistencia.Contexts.Gerencia

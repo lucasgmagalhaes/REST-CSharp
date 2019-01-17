@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Entidades.Models
+namespace Entidades.Entidades.Gerencia
 {
     public partial class Cliente : IEntity
     {

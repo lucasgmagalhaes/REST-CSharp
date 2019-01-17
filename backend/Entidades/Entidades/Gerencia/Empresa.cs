@@ -2,20 +2,20 @@
 using System;
 using System.Collections.Generic;
 
-namespace Entidades.Models
+namespace Entidades.Entidades.Gerencia
 {
     public partial class Empresa : IEntity
     {
         public Empresa()
         {
-            UsuarioEmpresa = new HashSet<Usuario>();
+            this.UsuarioEmpresa = new HashSet<UsuarioEmpresa>();
         }
 
         public long Id { get; set; }
         public string Nome { get; set; }
-        public long ClienteId { get; set; }
+        public long IdCliente { get; set; }
 
-        public virtual Cliente Cliente { get; set; }
-        public virtual ICollection<Usuario> UsuarioEmpresa { get; set; }
+        public virtual Cliente IdClienteNavigation { get; set; }
+        public virtual ICollection<UsuarioEmpresa> UsuarioEmpresa { get; set; }
     }
 }

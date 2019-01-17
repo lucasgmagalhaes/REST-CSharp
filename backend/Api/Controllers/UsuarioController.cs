@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Entidades.Models;
+using Entidades.Entidades.Gerencia;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Persistencia.Interfaces;
@@ -8,11 +9,16 @@ using Persistencia.Interfaces;
 namespace Api.Controllers
 {
     [ApiController]
-    [Authorize("Bearer")]
+    //[Authorize("Bearer")]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
-        private ICrudService<Usuario> crudService;
+        private IUsuarioService usuarioService;
+
+        public UsuarioController(IUsuarioService usuarioService)
+        {
+            this.usuarioService = usuarioService;
+        }
 
         // GET: api/<controller>
         [HttpGet]
@@ -25,7 +31,14 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<Usuario> Get(long id)
         {
-            return await this.crudService.BuscarAsync(id);
+            return await this.usuarioService.BuscarAsync(id);
+        }
+
+        [HttpGet("{id}/empresa")]
+        public IActionResult GetEmpresasUsuario(long id)
+        {
+            List<Empresa> empresas = this.usuarioService.BuscarEmpresas(id);
+            return Ok(empresas);
         }
 
         // POST api/<controller>
@@ -34,7 +47,7 @@ namespace Api.Controllers
         {
             try
             {
-                this.crudService.Inserir(usuario);
+                this.usuarioService.Inserir(usuario);
                 return Ok("Criado com sucesso");
             }
             catch (Exception ex)
@@ -49,7 +62,7 @@ namespace Api.Controllers
         {
             try
             {
-                await this.crudService.AtualizarAsync(usuario);
+                await this.usuarioService.AtualizarAsync(usuario);
                 return Ok();
             }
             catch(Exception e)
@@ -62,7 +75,7 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            await this.crudService.DeletarAsync(id);
+            await this.usuarioService.DeletarAsync(id);
             return Ok();
         }
     }

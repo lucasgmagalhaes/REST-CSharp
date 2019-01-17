@@ -1,4 +1,4 @@
-﻿using Entidades.Models;
+﻿using Entidades.Entidades.Gerencia;
 using Persistencia.Contexts.Gerencia;
 using Persistencia.Interfaces;
 

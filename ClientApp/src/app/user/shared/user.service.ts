@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Empresa } from 'src/app/models/empresa.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class UserService {
   excluir(id: number): Observable<Object> {
     console.log(environment.apiRoute + 'usuario/' + id);
     return this.http.delete(environment.apiRoute + 'usuario/' + id);
+  }
+
+  buscarEmpresas(id: number): Observable<Empresa[]>{
+    return this.http.get<Empresa[]>(environment.apiRoute + 'usuario/' + id + '/empresa');
   }
 }

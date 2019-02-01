@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   selecionarEmpresa() {
-    localStorage.setItem('empresa', JSON.stringify(this.empresaSelecionada));
+    localStorage.setItem('empresa', this.empresaSelecionada.nome);
     console.log(localStorage.getItem('empresa'));
     document.getElementById('exampleModalCenter').style.visibility = 'none';
   }

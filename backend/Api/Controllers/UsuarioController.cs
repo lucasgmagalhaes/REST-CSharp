@@ -9,7 +9,7 @@ using Persistencia.Interfaces;
 namespace Api.Controllers
 {
     [ApiController]
-    //[Authorize("Bearer")]
+    [Authorize("Bearer")]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace Api.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public async Task<Usuario> Get(long id)
+        public async Task<Usuario> Get(long id, [FromHeader]object empresa)
         {
             return await this.usuarioService.BuscarAsync(id);
         }

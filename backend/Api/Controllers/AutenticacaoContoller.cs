@@ -8,6 +8,7 @@ using Entidades.Entidades.Gerencia;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Persistencia;
 using Persistencia.Interfaces;
 
 namespace Api.Controllers
@@ -16,10 +17,23 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class AutenticacaoController : ControllerBase
     {
+
         [HttpGet]
         public IActionResult test()
         {
             return Ok("BATATAA");
+        }
+
+        [Authorize("Bearer")]
+        [HttpPost("empresa/{empresa}")]
+        public IActionResult DefinirEmpresa(string empresa)
+        {
+            if (!string.IsNullOrEmpty(empresa))
+            {
+                ConnectionString.Database = empresa;
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [HttpPost]

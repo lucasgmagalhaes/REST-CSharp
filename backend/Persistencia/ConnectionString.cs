@@ -2,10 +2,10 @@
 {
     public static class ConnectionString
     {
-        public static string Server { private get; set; }
-        public static string Database { private get; set; }
-        public static string UserId { private get; set; }
-        public static string Password { private get; set; }
+        public static string Server { get; set; }
+        public static string Database { get; set; }
+        public static string UserId { get; set; }
+        public static string Password { get; set; }
 
 
         public static void SetConnection(string server, string database, string userId, string password)

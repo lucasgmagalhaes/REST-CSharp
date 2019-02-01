@@ -3,20 +3,19 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Persistencia;
+using Persistencia.Contexts;
 using Persistencia.Contexts.Application;
 using Persistencia.Contexts.Gerencia;
 using Persistencia.Interfaces;
 using Persistencia.Services;
 using System;
-using System.IO;
 
 namespace Api
 {
@@ -45,8 +44,8 @@ namespace Api
             services.AddScoped(typeof(IUsuarioService), typeof(UsuarioService));
             services.AddScoped(typeof(IUsuarioEmpresaService), typeof(UsuarioEmpresaService));
 
+            services.AddDbContext<ApplicationDbContext>().AddSingleton<IDbContextSchema>(new DbContextSchema(ConnectionString.Database));
             services.AddDbContext<GerenciaContext>();
-            services.AddTransient<ApplicationDbContext>(provider => ResolveDbContext());
 
             this.ConfigureAuthentication(services);
         }
@@ -135,11 +134,6 @@ namespace Api
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser().Build());
             });
-        }
-
-        private ApplicationDbContext ResolveDbContext()
-        {
-            return new ApplicationDbContext();
         }
     }
 }

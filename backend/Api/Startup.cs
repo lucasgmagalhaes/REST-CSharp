@@ -43,6 +43,7 @@ namespace Api
             services.AddScoped(typeof(IAutenticacaoService), typeof(AutenticacaoService));
             services.AddScoped(typeof(IUsuarioService), typeof(UsuarioService));
             services.AddScoped(typeof(IUsuarioEmpresaService), typeof(UsuarioEmpresaService));
+            services.AddScoped(typeof(IFornecedorService), typeof(FornecedorService));
 
             services.AddDbContext<ApplicationDbContext>().AddSingleton<IDbContextSchema>(new DbContextSchema(ConnectionString.Database));
             services.AddDbContext<GerenciaContext>();

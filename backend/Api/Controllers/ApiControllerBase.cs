@@ -5,7 +5,6 @@ namespace Api.Controllers
 {
     [ApiController]
     [Authorize("Bearer")]
-    [Route("api/[controller]")]
     public abstract class ApiControllerBase<T> : ControllerBase
     {
         /// <summary>

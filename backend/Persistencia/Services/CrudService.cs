@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
-using Persistencia.Contexts.Application;
 using Persistencia.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -38,7 +37,7 @@ namespace Persistencia.Services
             return this.dbService.Set<T>().ToList();
         }
 
-        public IQueryable<T> Buscar(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, 
+        public IQueryable<T> Buscar(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
             IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> result = this.dbService.Set<T>().Where(predicate);
@@ -151,11 +150,13 @@ namespace Persistencia.Services
                 }
                 else
                 {
-                    throw new Exception();
+                    System.Diagnostics.Debug.WriteLine(entidade.GetType() + "de Id:" + entidade.Id + "já foi cadastrada");
+                    throw new Exception("Entidade já foi cadastrada");
                 }
             }
             catch (Exception e)
             {
+                System.Diagnostics.Debug.WriteLine(e.Message);
                 throw new Exception("Não é possível criar uma entidade já existente");
             }
         }

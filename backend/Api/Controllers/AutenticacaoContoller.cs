@@ -6,6 +6,7 @@ using System.Security.Principal;
 using Api.Token;
 using Entidades.Entidades.Gerencia;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Persistencia;
@@ -17,23 +18,18 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class AutenticacaoController : ControllerBase
     {
-
-        [HttpGet]
-        public IActionResult test()
-        {
-            return Ok("BATATAA");
-        }
-
         [Authorize("Bearer")]
         [HttpPost("empresa/{empresa}")]
-        public IActionResult DefinirEmpresa(string empresa)
+        public IActionResult DefinirEmpresa([FromServices]IHttpContextAccessor httpContextAccessor, string empresa)
         {
             if (!string.IsNullOrEmpty(empresa))
             {
                 ConnectionString.Database = empresa;
+                string email = httpContextAccessor.HttpContext.User.Identity.Name;
+                Session.AdicionarSessaoUsuario(email, empresa);
                 return Ok();
             }
-            return BadRequest();
+            return BadRequest("nome de empresa inválido");
         }
 
         [HttpPost]
@@ -56,6 +52,15 @@ namespace Api.Controllers
 
             if (credenciaisValidas)
             {
+                if (Session.IsUsuarioLogado(usuario.Email))
+                {
+                    return new
+                    {
+                        authenticated = false,
+                        message = "Usuário logado"
+                    };
+                }
+
                 ClaimsIdentity identity = new ClaimsIdentity(
                     new GenericIdentity(usuario.Email, "Email"),
                     new[] {
@@ -95,7 +100,7 @@ namespace Api.Controllers
                 return new
                 {
                     authenticated = false,
-                    message = "Falha ao autenticar"
+                    message = "Email ou senha inválidos"
                 };
             }
         }

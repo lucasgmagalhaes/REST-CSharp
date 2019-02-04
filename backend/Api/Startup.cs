@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -44,6 +45,9 @@ namespace Api
             services.AddScoped(typeof(IUsuarioService), typeof(UsuarioService));
             services.AddScoped(typeof(IUsuarioEmpresaService), typeof(UsuarioEmpresaService));
             services.AddScoped(typeof(IFornecedorService), typeof(FornecedorService));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IAuthorizationHandler, AuthorizeHandle>();
 
             services.AddDbContext<ApplicationDbContext>().AddSingleton<IDbContextSchema>(new DbContextSchema(ConnectionString.Database));
             services.AddDbContext<GerenciaContext>();

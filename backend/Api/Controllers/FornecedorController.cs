@@ -27,11 +27,15 @@ namespace Api.Controllers
             try
             {
                 List<Fornecedor> fornecedores = this.fornecedorService.Buscar();
-                return Ok(fornecedores);
+                if (fornecedores.Count > 0)
+                {
+                    return Ok(fornecedores);
+                }
+                return NoContent();
             }
             catch
             {
-                return BadRequest();
+                return StatusCode(500);
             }
         }
 
@@ -42,7 +46,15 @@ namespace Api.Controllers
 
         public override IActionResult Post([FromBody] Fornecedor entidade)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.fornecedorService.Inserir(entidade);
+                return Ok(entidade);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         public override IActionResult Put([FromBody] Fornecedor entity)

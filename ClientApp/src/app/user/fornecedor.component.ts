@@ -1,10 +1,10 @@
-import { UserService } from './shared/user.service';
-import { Component, OnInit } from '@angular/core';
+import { UserService } from "./shared/user.service";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'nov-user',
-  templateUrl: './fornecedor.component.html',
-  styleUrls: ['./fornecedor.component.scss']
+  selector: "nov-user",
+  templateUrl: "./fornecedor.component.html",
+  styleUrls: ["./fornecedor.component.scss"]
 })
 export class UserComponent implements OnInit {
 
@@ -40,9 +40,9 @@ export class UserComponent implements OnInit {
 
   editar(usuario: User) {
 
-    (<HTMLInputElement>document.getElementById('inputNome')).value = usuario.nome;
-    (<HTMLInputElement>document.getElementById('inputSenha')).value = usuario.senha;
-    (<HTMLInputElement>document.getElementById('inputEmail')).value = usuario.email;
+    (<HTMLInputElement>document.getElementById("inputNome")).value = usuario.nome;
+    (<HTMLInputElement>document.getElementById("inputSenha")).value = usuario.senha;
+    (<HTMLInputElement>document.getElementById("inputEmail")).value = usuario.email;
 
     this.modoEdicao(true);
     this.usuarioEditando = usuario;
@@ -51,15 +51,15 @@ export class UserComponent implements OnInit {
   modoEdicao(habilitar: boolean) {
     if (habilitar) {
       this.editEnable = true;
-      (<HTMLButtonElement>document.getElementById('btnCriar')).textContent = "Salvar";
+      (<HTMLButtonElement>document.getElementById("btnCriar")).textContent = "Salvar";
     } else {
       this.editEnable = false;
-      (<HTMLButtonElement>document.getElementById('btnCriar')).textContent = "Criar";
+      (<HTMLButtonElement>document.getElementById("btnCriar")).textContent = "Criar";
 
-      (<HTMLInputElement>document.getElementById('inputNome')).value = "";
-      (<HTMLInputElement>document.getElementById('inputSobrenome')).value = "";
-      (<HTMLInputElement>document.getElementById('inputSenha')).value = "";
-      (<HTMLInputElement>document.getElementById('inputEmail')).value = "";
+      (<HTMLInputElement>document.getElementById("inputNome")).value = "";
+      (<HTMLInputElement>document.getElementById("inputSobrenome")).value = "";
+      (<HTMLInputElement>document.getElementById("inputSenha")).value = "";
+      (<HTMLInputElement>document.getElementById("inputEmail")).value = "";
     }
   }
 

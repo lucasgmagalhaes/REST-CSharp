@@ -1,14 +1,14 @@
-import { UserService } from './../user/shared/user.service';
-import { Authentication } from './../guards/authentication.model';
-import { LoginService } from './login.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Empresa } from '../models/empresa.model';
+import { UserService } from "./../user/shared/user.service";
+import { Authentication } from "./../guards/authentication.model";
+import { LoginService } from "./login.service";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { Empresa } from "../models/empresa.model";
 
 @Component({
-  selector: 'nov-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "nov-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
 
@@ -16,28 +16,27 @@ export class LoginComponent implements OnInit {
   empresaSelecionada: Empresa;
   selecionaEmpresa: boolean;
 
+  loginForm = new FormGroup({
+    email: new FormControl(""),
+    password: new FormControl("")
+  });
+
   constructor(private loginService: LoginService, private userService: UserService) { }
 
   ngOnInit() {
   }
 
-  loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  });
-
   login() {
     this.loginService.login(this.loginForm.controls.email.value,
-      this.loginForm.controls.password.value).subscribe(response => {
+      this.loginForm.controls.password.value).subscribe(authenticacao => {
 
-        console.log(response);
+        console.log(authenticacao);
 
-        localStorage.setItem("acessToken", response.accessToken);
-        localStorage.setItem("IdUsuario", response.idUsuario.toString());
+        localStorage.setItem("usuarioLogado", JSON.stringify(authenticacao));
 
-        this.userService.buscarEmpresas(response.idUsuario).subscribe(response => {
-          console.log(response);
-          this.empresas = response;
+        this.userService.buscarEmpresas(authenticacao.idUsuario).subscribe(empresa => {
+          console.log(empresa);
+          this.empresas = empresa;
           this.selecionaEmpresa = true;
         });
       });
@@ -48,9 +47,9 @@ export class LoginComponent implements OnInit {
   }
 
   selecionarEmpresa() {
-    localStorage.setItem('empresa', this.empresaSelecionada.nome);
-    console.log(localStorage.getItem('empresa'));
-    document.getElementById('exampleModalCenter').style.visibility = 'none';
+    localStorage.setItem("empresa", this.empresaSelecionada.nome);
+    console.log(localStorage.getItem("empresa"));
+    document.getElementById("exampleModalCenter").style.visibility = "none";
   }
 
 }

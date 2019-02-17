@@ -11,7 +11,11 @@ namespace Api
             var email = context.User.Identity.Name;
             if (context.User.Identity.IsAuthenticated)
             {
-                ConnectionString.Database = Session.BuscarBancoDoUsuario(email);
+                string database = Session.BuscarBancoDoUsuario(email);
+                if (database != "")
+                {
+                    ConnectionString.Database = database;
+                }
             }
             return Task.CompletedTask;
         }

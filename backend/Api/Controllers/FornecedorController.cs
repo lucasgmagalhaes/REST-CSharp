@@ -33,9 +33,9 @@ namespace Api.Controllers
                 }
                 return NoContent();
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
 
@@ -51,9 +51,9 @@ namespace Api.Controllers
                 this.fornecedorService.Inserir(entidade);
                 return Ok(entidade);
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
 

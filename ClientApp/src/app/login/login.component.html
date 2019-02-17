@@ -1,53 +1,53 @@
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+<div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle'
+  aria-hidden='true'>
+  <div class='modal-dialog modal-dialog-centered' role='document'>
+    <div class='modal-content'>
 
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLongTitle'>Login</h5>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
         </button>
       </div>
 
-      <form [formGroup]="loginForm">
-        <div class="modal-body">
+      <form [formGroup]='loginForm'>
+        <div class='modal-body'>
           
-          <div *ngIf="empresas === null || empresas === undefined" id="selecionaEmpresa">
-            <div id="login">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input formControlName="email" type="email" #email class="form-control" id="inputEmail" autocomplete="off"
-                  placeholder="Enter email">
+          <div *ngIf='empresas === null || empresas === undefined' id='selecionaEmpresa'>
+            <div id='login'>
+              <div class='form-group'>
+                <label for='exampleInputEmail1'>Email</label>
+                <input formControlName='email' type='email' #email class='form-control' id='inputEmail' autocomplete='off'
+                  placeholder='Enter email'>
               </div>
   
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input formControlName="password" type="password" #senha class="form-control" id="inputSenha"
-                  autocomplete="off" placeholder="Password">
+              <div class='form-group'>
+                <label for='exampleInputPassword1'>Password</label>
+                <input formControlName='password' type='password' #senha class='form-control' id='inputSenha'
+                  autocomplete='off' placeholder='Password'>
               </div>
             </div>
           </div>
 
-          <div *ngIf="empresas !== null && empresas !== undefined" id="selecionaEmpresa">
-            <div class="form-group">
-              <label for="exampleFormControlSelect2">Selecione uma empresa</label>
-              <select *ngFor="let empresa of empresas" multiple class="form-control" id="exampleFormControlSelect2">
-                <option (click)="setEmpresa(empresa)">{{ empresa.nome }}</option>
+          <div *ngIf='empresas !== null && empresas !== undefined' id='selecionaEmpresa'>
+            <div class='form-group'>
+              <label for='exampleFormControlSelect2'>Selecione uma empresa</label>
+              <select *ngFor='let empresa of empresas' multiple class='form-control' id='exampleFormControlSelect2'>
+                <option (click)='setEmpresa(empresa)'>{{ empresa.nome }}</option>
               </select>
             </div>
           </div>
 
         </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <div class='modal-footer'>
+          <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>
 
-          <button *ngIf="!selecionaEmpresa" type="button" class="btn btn-primary" 
-          (click)="login()">Login</button>
+          <button *ngIf='!selecionaEmpresa' type='button' class='btn btn-primary' 
+          (click)='login()'>Login</button>
 
-          <button *ngIf="selecionaEmpresa" type="button" class="btn btn-primary" 
-          (click)="selecionarEmpresa()" data-dismiss="modal">Selecionar</button>
+          <button *ngIf='selecionaEmpresa' type='button' class='btn btn-primary' 
+          (click)='selecionarEmpresa()' data-dismiss='modal'>Selecionar</button>
 
         </div>
 

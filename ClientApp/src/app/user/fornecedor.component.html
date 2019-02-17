@@ -1,48 +1,47 @@
-<div class="row">
-  <div class="col-4">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Name</label>
-      <input type="text" #nome class="form-control" id="inputNome" autocomplete="off" placeholder="Example input">
+<div class='row'>
+  <div class='col-4 card p-4'>
+
+    <h5 class='card-title'>Fornecedor</h5>
+
+    <div class='form-group'>
+      <label for='exampleInputEmail1'>Name</label>
+      <input type='text' #nome class='form-control' id='inputNome' autocomplete='off' placeholder='Example input'>
     </div>
 
-    <div class="form-group">
-      <label for="exampleInputSobrenome">Sobrenome</label>
-      <input type="text" #sobrenome class="form-control" id="inputSobrenome" autocomplete="off" placeholder="Example input">
+    <div class='form-group'>
+      <label for='exampleInputSobrenome'>Endereço</label>
+      <input type='text' #endereco class='form-control' id='inputSobrenome' autocomplete='off'
+        placeholder='Example input'>
     </div>
 
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email</label>
-      <input type="email" #email class="form-control" id="inputEmail" autocomplete="off" placeholder="Enter email">
+    <div class='form-group'>
+      <label for='exampleInputEmail1'>Estado</label>
+      <input type='email' #estado class='form-control' id='inputEmail' autocomplete='off' placeholder='Enter email'>
     </div>
 
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" #senha class="form-control" id="inputSenha" autocomplete="off" placeholder="Password">
-    </div>
-
-    <button id="btnCriar" (click)="criarUsuario({ nome: nome.value , email: email.value, senha: senha.value, sobrenome: sobrenome.value})"
-      class="btn btn-primary">Criar</button>
+    <button id='btnCriar' (click)='criarFornecedor({ nome: nome.value , endereco: endereco.value, estado: estado.value})'
+      class='btn btn-primary'>Criar</button>
   </div>
-  <div class="col-8">
-    <table class="table">
+  <div class='col-8 card p-2'>
+    <table class='table'>
       <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Sobrenome</th>
-          <th scope="col">Email</th>
-          <th scope="col">Ações</th>
+          <th scope='col'>Id</th>
+          <th scope='col'>Nome</th>
+          <th scope='col'>Endereço</th>
+          <th scope='col'>Estado</th>
+          <th scope='col'>Ações</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
-          <th scope="row">{{ user.id }}</th>
-          <td>{{user.nome}}</td>
-          <td>{{user.sobrenome}}</td>
-          <td>{{user.email}}</td>
+        <tr *ngFor='let fornecedor of fornecedores'>
+          <th scope='row'>{{ fornecedor.id }}</th>
+          <td>{{fornecedor.nome}}</td>
+          <td>{{fornecedor.endereco}}</td>
+          <td>{{fornecedor.estado}}</td>
           <td>
-            <button (click)="excluir(user.id)" class="btn btn-primary">Excluir</button>
-            <button (click)="editar(user)" class="btn btn-primary">Editar</button>
+            <button (click)='excluir(fornecedor.id)' class='btn btn-primary'>Excluir</button>
+            <button (click)='editar(fornecedor)' class='btn btn-primary'>Editar</button>
           </td>
         </tr>
       </tbody>

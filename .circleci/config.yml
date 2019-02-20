@@ -1,7 +1,7 @@
 version: 2
 jobs:
 
-  build-net:
+  build:
     docker:
       - image: microsoft/dotnet:sdk
     environment:
@@ -28,7 +28,7 @@ jobs:
             # Restore local dependencies from cache
             - restore_cache:
                 keys:
-                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-{{ checksum "ClientApp/package.json" }}
                 - v1-dependencies-
             # Install project dependencies
             - run:
@@ -36,7 +36,7 @@ jobs:
                 command: npm install
             # Cache local dependencies if they don't exist
             - save_cache:
-                key: v1-dependencies-{{ checksum "package.json" }}
+                key: v1-dependencies-{{ checksum "ClientApp/package.json" }}
                 paths:
                     - node_modules
             # Lint the source code
@@ -69,6 +69,5 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build-NET
-
+      - build
       - build-Angular

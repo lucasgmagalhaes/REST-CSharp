@@ -19,7 +19,7 @@ jobs:
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
-              - run:
+            - run:
                 command: ls /home/circleci/REST-CSharp/ClientApp/
             # Log the current branch
             - run:

@@ -20,12 +20,10 @@ jobs:
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
-            - run:
-                command: cd ClientApp/
             # Log the current branch
             - run:
                 name: Update npm
-                command: npm install -g npm@latest
+                command: cd ClientApp && npm install -g npm@latest
             - run:
                 name: Show current branch
                 command: echo ${CIRCLE_BRANCH}
@@ -36,7 +34,7 @@ jobs:
             # Install project dependencies
             - run:
                 name: Install local dependencies
-                command: npm install
+                command: cd ClientApp && npm install
             # Cache local dependencies if they don't exist
             - save_cache:
                 key: v1-dependencies-{{ checksum "package.json" }}
@@ -45,11 +43,11 @@ jobs:
             # Lint the source code
             - run:
                 name: Linting
-                command: npm run lint
+                command: cd ClientApp && npm run lint
             # Test the source code
             - run:
                 name: Testing
-                command: npm run test
+                command: cd ClientApp && npm run test
             # Build project with different configuration based on
             # the current branch
             - run:

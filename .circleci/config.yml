@@ -13,7 +13,7 @@ jobs:
       - run: dotnet build backend
       # - run: dotnet test src/Sample.Tests
   
-  angular:
+  build-Angular:
         working_directory: ~/ClientApp
         docker:
             - image: circleci/node:6.10-browsers

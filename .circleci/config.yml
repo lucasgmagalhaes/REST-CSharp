@@ -1,7 +1,7 @@
 version: 2
 jobs:
 
-  build-NET:
+  build-net:
     docker:
       - image: microsoft/dotnet:sdk
     environment:
@@ -13,8 +13,8 @@ jobs:
       - run: dotnet build backend
       # - run: dotnet test src/Sample.Tests
   
-  build-Angular:
-        working_directory: ~/REST-CSharp/ClientApp
+  angular:
+        working_directory: ~/ClientApp
         docker:
             - image: circleci/node:6.10-browsers
         steps:

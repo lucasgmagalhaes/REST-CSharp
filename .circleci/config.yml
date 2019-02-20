@@ -1,0 +1,15 @@
+version: 2
+jobs:
+
+  build:
+    docker:
+      - image: microsoft/dotnet:sdk
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    working_directory: ~/backend
+    steps:
+      - checkout
+      - run: dotnet restore src
+      - run: dotnet build src
+      # - run: dotnet test src/Sample.Tests

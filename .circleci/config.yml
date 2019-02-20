@@ -14,12 +14,13 @@ jobs:
       # - run: dotnet test src/Sample.Tests
   
   build-Angular:
-        working_directory: ~/ClientApp
         docker:
             - image: circleci/node:6.10-browsers
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout
+              - run:
+                command: ls /home/circleci/REST-CSharp/ClientApp/
             # Log the current branch
             - run:
                 name: Show current branch

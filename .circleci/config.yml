@@ -7,10 +7,8 @@ jobs:
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
-    working_directory: ~/backend
-    path: ~/backend
     steps:
       - checkout
-      - run: dotnet restore src
-      - run: dotnet build src
+      - run: dotnet restore backend
+      - run: dotnet build backend
       # - run: dotnet test src/Sample.Tests

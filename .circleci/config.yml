@@ -1,7 +1,7 @@
 version: 2
 jobs:
 
-  build:
+  build.NET:
     docker:
       - image: microsoft/dotnet:sdk
     environment:
@@ -12,3 +12,29 @@ jobs:
       - run: dotnet restore backend
       - run: dotnet build backend
       # - run: dotnet test src/Sample.Tests
+  
+  build-Angular:
+    working_directory: ~/REST-CSharp/ClientApp
+    docker:
+      - image: circleci/node:6-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.lock" }}
+      - run:
+          name: install-dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: angular-build
+          command: npm run ng -- build --prod --aot --no-progress
+      - run:
+          name: angular-test
+          command: npm run test -- --single-run --no-progress
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests

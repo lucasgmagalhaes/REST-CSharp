@@ -20,7 +20,7 @@ jobs:
             # Checkout the code from the branch into the working_directory
             - checkout
             - run:
-                command: ls /home/circleci/project/ClientApp/
+                command: cd ClientApp/
             # Log the current branch
             - run:
                 name: Show current branch

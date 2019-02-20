@@ -15,29 +15,54 @@ jobs:
   
   build-Angular:
     working_directory: ~/REST-CSharp/ClientApp
-    docker:
-      - image: circleci/node:6-browsers
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-dependencies
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ~/.cache/yarn
-            - ./node_modules
-      - run:
-          name: angular-build
-          command: npm run ng -- build --prod --aot --no-progress
-      - run:
-          name: angular-test
-          command: npm run test -- --single-run --no-progress
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
+        docker:
+            - image: circleci/node:6.10-browsers
+        steps:
+            # Checkout the code from the branch into the working_directory
+            - checkout
+            # Log the current branch
+            - run:
+                name: Show current branch
+                command: echo ${CIRCLE_BRANCH}
+            # Restore local dependencies from cache
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-
+            # Install project dependencies
+            - run:
+                name: Install local dependencies
+                command: npm install
+            # Cache local dependencies if they don't exist
+            - save_cache:
+                key: v1-dependencies-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            # Lint the source code
+            - run:
+                name: Linting
+                command: npm run lint
+            # Test the source code
+            - run:
+                name: Testing
+                command: npm run test
+            # Build project with different configuration based on
+            # the current branch
+            - run:
+                name: Building
+                command: |
+                    if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+                        npm run build-qa
+                    elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                        npm run build-prod
+                    else
+                        npm run build-dev
+                    fi
+            # Cache the dist folder for the deploy job
+            - save_cache:
+                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+                paths:
+                    - dist
           
 workflows:
   version: 2

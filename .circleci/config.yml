@@ -14,6 +14,7 @@ jobs:
       # - run: dotnet test src/Sample.Tests
   
   build-Angular:
+        working_directory: ~/ClientApp
         docker:
             - image: circleci/node:6.10-browsers
         steps:
@@ -23,20 +24,22 @@ jobs:
                 command: cd ClientApp/
             # Log the current branch
             - run:
+                name: Update npm
+                command: npm install -g npm@latest
+            - run:
                 name: Show current branch
                 command: echo ${CIRCLE_BRANCH}
             # Restore local dependencies from cache
             - restore_cache:
                 keys:
-                - v1-dependencies-{{ checksum "ClientApp/package.json" }}
-                - v1-dependencies-
+                - v1-dependencies-{{ checksum "package.json" }}
             # Install project dependencies
             - run:
                 name: Install local dependencies
                 command: npm install
             # Cache local dependencies if they don't exist
             - save_cache:
-                key: v1-dependencies-{{ checksum "ClientApp/package.json" }}
+                key: v1-dependencies-{{ checksum "package.json" }}
                 paths:
                     - node_modules
             # Lint the source code
